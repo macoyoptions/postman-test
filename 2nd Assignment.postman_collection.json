@@ -1,0 +1,1076 @@
+{
+  "info": {
+    "_postman_id": "90dce55a-051d-4398-8212-f9f125ef3bce",
+    "name": "2nd Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49030028",
+    "_collection_link": "https://go.postman.co/collection/49030028-90dce55a-051d-4398-8212-f9f125ef3bce?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Validate that user is able to get all object",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "5",
+              "disabled": true
+            },
+            {
+              "key": "id",
+              "value": "6",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user can get a single object by the ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cb2fcbea018ae"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "1",
+              "disabled": true
+            },
+            {
+              "key": "collectionName",
+              "value": "products",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user is able to post an object successfully",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {",
+              "    pm.expect([",
+              "        200,",
+              "        201",
+              "    ]).to.include(pm.response.code);",
+              "})",
+              "",
+              "pm.test('Response time is under 2000ms', function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "})",
+              "",
+              "pm.test('Response body is JSON', function () {",
+              "    pm.response.to.be.json;",
+              "})",
+              "",
+              "pm.test('Response body has id and name', function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.be.an('object');",
+              "    pm.expect(responseJson).to.have.property('id');",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "})",
+              "",
+              "pm.test('Response body name matches request body name', function () {",
+              "    let expectedName;",
+              "    const raw = pm.request.body && pm.request.body.mode === 'raw' ? pm.request.body.raw : null;",
+              "    if (raw) {",
+              "        try {",
+              "            const parsed = JSON.parse(raw);",
+              "            expectedName = parsed && parsed.name;",
+              "        } catch (e) {",
+              "        }",
+              "    }",
+              "    if (expectedName === undefined && pm.request.body && (pm.request.body.mode === 'formdata' || pm.request.body.mode === 'urlencoded')) {",
+              "        const arr = pm.request.body[pm.request.body.mode] || [];",
+              "        const item = arr.find(i => i && i.key === 'name' && i.disabled !== true);",
+              "        expectedName = item && item.value;",
+              "    }",
+              "    pm.expect(expectedName, 'Request body must include a \\'name\\'').to.not.be.undefined;",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "    pm.expect(responseJson.name).to.eql(expectedName);",
+              "})"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"HP laptop\",\r\n  \"data\": {\r\n    \"year\": 2030,\r\n    \"price\": \"thirty thousand\",\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"3gb\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "5",
+              "disabled": true
+            },
+            {
+              "key": "id",
+              "value": "6",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user can edit an object successfully",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {",
+              "    pm.expect([",
+              "        200,",
+              "        201",
+              "    ]).to.include(pm.response.code);",
+              "})",
+              "",
+              "pm.test('Response time is under 2000ms', function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "})",
+              "",
+              "pm.test('Response body is JSON', function () {",
+              "    pm.response.to.be.json;",
+              "})",
+              "",
+              "pm.test('Response body has id and name', function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.be.an('object');",
+              "    pm.expect(responseJson).to.have.property('id');",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "})",
+              "",
+              "pm.test('Response body name matches request body name', function () {",
+              "    let expectedName;",
+              "    const raw = pm.request.body && pm.request.body.mode === 'raw' ? pm.request.body.raw : null;",
+              "    if (raw) {",
+              "        try {",
+              "            const parsed = JSON.parse(raw);",
+              "            expectedName = parsed && parsed.name;",
+              "        } catch (e) {",
+              "        }",
+              "    }",
+              "    if (expectedName === undefined && pm.request.body && (pm.request.body.mode === 'formdata' || pm.request.body.mode === 'urlencoded')) {",
+              "        const arr = pm.request.body[pm.request.body.mode] || [];",
+              "        const item = arr.find(i => i && i.key === 'name' && i.disabled !== true);",
+              "        expectedName = item && item.value;",
+              "    }",
+              "    pm.expect(expectedName, 'Request body must include a \\'name\\'').to.not.be.undefined;",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "    pm.expect(responseJson.name).to.eql(expectedName);",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.100,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cbdae98952c51",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cbdae98952c51"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "partially edit object",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.expect([",
+              "        200,",
+              "    ]).to.include(pm.response.code);",
+              "})",
+              "",
+              "pm.test('Response time is under 2000ms', function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "})",
+              "",
+              "pm.test('Response body is JSON', function () {",
+              "    pm.response.to.be.json;",
+              "})",
+              "",
+              "pm.test('Response body has id and name', function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.be.an('object');",
+              "    pm.expect(responseJson).to.have.property('id');",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "})",
+              "",
+              "pm.test('Response body name matches request body name', function () {",
+              "    let expectedName;",
+              "    const raw = pm.request.body && pm.request.body.mode === 'raw' ? pm.request.body.raw : null;",
+              "    if (raw) {",
+              "        try {",
+              "            const parsed = JSON.parse(raw);",
+              "            expectedName = parsed && parsed.name;",
+              "        } catch (e) {",
+              "        }",
+              "    }",
+              "    if (expectedName === undefined && pm.request.body && (pm.request.body.mode === 'formdata' || pm.request.body.mode === 'urlencoded')) {",
+              "        const arr = pm.request.body[pm.request.body.mode] || [];",
+              "        const item = arr.find(i => i && i.key === 'name' && i.disabled !== true);",
+              "        expectedName = item && item.value;",
+              "    }",
+              "    pm.expect(expectedName, 'Request body must include a \\'name\\'').to.not.be.undefined;",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "    pm.expect(responseJson.name).to.eql(expectedName);",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"del hp MacBook Pro 16 (i only changed the Name)\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cbdae98952c51",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cbdae98952c51"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user can create an object even if price is missing",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {",
+              "    pm.expect([",
+              "        200,",
+              "        201",
+              "    ]).to.include(pm.response.code);",
+              "})",
+              "",
+              "pm.test('Response time is under 2000ms', function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "})",
+              "",
+              "pm.test('Response body is JSON', function () {",
+              "    pm.response.to.be.json;",
+              "})",
+              "",
+              "pm.test('Response body has id and name', function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.be.an('object');",
+              "    pm.expect(responseJson).to.have.property('id');",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "})",
+              "",
+              "pm.test('Response body name matches request body name', function () {",
+              "    let expectedName;",
+              "    const raw = pm.request.body && pm.request.body.mode === 'raw' ? pm.request.body.raw : null;",
+              "    if (raw) {",
+              "        try {",
+              "            const parsed = JSON.parse(raw);",
+              "            expectedName = parsed && parsed.name;",
+              "        } catch (e) {",
+              "        }",
+              "    }",
+              "    if (expectedName === undefined && pm.request.body && (pm.request.body.mode === 'formdata' || pm.request.body.mode === 'urlencoded')) {",
+              "        const arr = pm.request.body[pm.request.body.mode] || [];",
+              "        const item = arr.find(i => i && i.key === 'name' && i.disabled !== true);",
+              "        expectedName = item && item.value;",
+              "    }",
+              "    pm.expect(expectedName, 'Request body must include a \\'name\\'').to.not.be.undefined;",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.have.property('name');",
+              "    pm.expect(responseJson.name).to.eql(expectedName);",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"3\",\r\n  \"data\": {\r\n    \"year\": 2030,\r\n    \"price\": \"\",\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"3gb\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user can remove object successfully",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 404 Not Found', function () {\r",
+              "    pm.expect([\r",
+              "        404,\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"message\": \"Object with id = ff8081819c5368bb019caed7dde4125a\r\n}"
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cb2fcbea018ae"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019caed7dde4125a",
+              "disabled": true
+            },
+            {
+              "key": "id",
+              "value": "6",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate that any new created object is added to all objects",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 OK', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cbdae98952c51",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate that edited object can be found inside all object",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body has id and name', function () {\r",
+              "    const responseJson = pm.response.json();\r",
+              "    pm.expect(responseJson).to.be.an('object');\r",
+              "    pm.expect(responseJson).to.have.property('id');\r",
+              "    pm.expect(responseJson).to.have.property('name');\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body name matches request body name', function () {\r",
+              "    let expectedName;\r",
+              "    const raw = pm.request.body && pm.request.body.mode === 'raw' ? pm.request.body.raw : null;\r",
+              "    if (raw) {\r",
+              "        try {\r",
+              "            const parsed = JSON.parse(raw);\r",
+              "            expectedName = parsed && parsed.name;\r",
+              "        } catch (e) {\r",
+              "        }\r",
+              "    }\r",
+              "    if (expectedName === undefined && pm.request.body && (pm.request.body.mode === 'formdata' || pm.request.body.mode === 'urlencoded')) {\r",
+              "        const arr = pm.request.body[pm.request.body.mode] || [];\r",
+              "        const item = arr.find(i => i && i.key === 'name' && i.disabled !== true);\r",
+              "        expectedName = item && item.value;\r",
+              "    }\r",
+              "    pm.expect(expectedName, 'Request body must include a \\'name\\'del MacBook Pro 16').to.not.be.undefined;\r",
+              "    const responseJson = pm.response.json();\r",
+              "    pm.expect(responseJson).to.have.property('name');\r",
+              "    pm.expect(responseJson.name).to.eql(expectedName);\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cbdc764532c7a",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cbdc764532c7a"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user is unable to fetch a single object without inserting object ID in params",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user is unable to fetch a single object with an invalid ID eg 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 404', function () {\r",
+              "    pm.expect([\r",
+              "        404,\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body has Object with id=1 was not found', function () {\r",
+              "    const responseJson = pm.response.json();\r",
+              "    pm.expect(responseJson).to.be.an('object');\r",
+              "    pm.expect(responseJson).to.have.property('Object with id=1 was not found');\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/1",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "1"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user is not able to fetch object again after deleting it",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 404', function () {\r",
+              "    pm.expect([\r",
+              "        404,\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body has property id', function () {\r",
+              "    const responseJson = pm.response.json();\r",
+              "    pm.expect(responseJson).to.be.an('object');\r",
+              "    pm.expect(responseJson).to.have.property('id');\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cb2fcbea018ae"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user can create an object even if price is missing",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": \"\",\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user cannot create an object when user pass number for name",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": 3,\r\n  \"data\": {\r\n    \"year\": 2030,\r\n    \"price\": 35000,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"3gb\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user cannot create an object when user put an inverted column around year",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Asus laptop\",\r\n  \"data\": {\r\n    \"year\": 2030,\r\n    \"price\": \"35000\",\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"20gb\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user cannot edit an already deleted object",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.100,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"5mb\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cb2fcbea018ae"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validate user cannot delete an already deleted object twice",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"message\": \"Object with id = ff8081819c5368bb019caed7dde4125a\r\n}"
+        },
+        "url": {
+          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "host": [
+            "{{BaseUrl}}collections"
+          ],
+          "path": [
+            "products",
+            "objects",
+            "ff8081819c5368bb019cb2fcbea018ae"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BaseUrl",
+      "value": ""
+    }
+  ]
+}
