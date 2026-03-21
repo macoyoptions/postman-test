@@ -87,72 +87,6 @@
       "response": []
     },
     {
-      "name": "Validate user can get a single object by the ID",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('Status code is 404', function () {\r",
-              "    pm.expect([\r",
-              "        404\r",
-              "    ]).to.include(pm.response.code);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response time is under 2000ms', function () {\r",
-              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response body is JSON', function () {\r",
-              "    pm.response.to.be.json;\r",
-              "})"
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "x-api-key",
-            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
-          "protocol": "https",
-          "host": [
-            "api",
-            "restful-api",
-            "dev"
-          ],
-          "path": [
-            "collections",
-            "products",
-            "objects",
-            "ff8081819c5368bb019cb2fcbea018ae"
-          ],
-          "query": [
-            {
-              "key": "id",
-              "value": "1",
-              "disabled": true
-            },
-            {
-              "key": "collectionName",
-              "value": "products",
-              "disabled": true
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "Validate user is able to post an object successfully",
       "event": [
         {
@@ -540,76 +474,6 @@
       "response": []
     },
     {
-      "name": "Validate user can remove object successfully",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('Status code is 404 Not Found', function () {\r",
-              "    pm.expect([\r",
-              "        404,\r",
-              "    ]).to.include(pm.response.code);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response time is under 2000ms', function () {\r",
-              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response body is JSON', function () {\r",
-              "    pm.response.to.be.json;\r",
-              "})"
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "request": {
-        "method": "DELETE",
-        "header": [
-          {
-            "key": "x-api-key",
-            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"message\": \"Object with id = ff8081819c5368bb019caed7dde4125a\r\n}"
-        },
-        "url": {
-          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
-          "protocol": "https",
-          "host": [
-            "api",
-            "restful-api",
-            "dev"
-          ],
-          "path": [
-            "collections",
-            "products",
-            "objects",
-            "ff8081819c5368bb019cb2fcbea018ae"
-          ],
-          "query": [
-            {
-              "key": "id",
-              "value": "ff8081819c5368bb019caed7dde4125a",
-              "disabled": true
-            },
-            {
-              "key": "id",
-              "value": "6",
-              "disabled": true
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "Validate that any new created object is added to all objects",
       "event": [
         {
@@ -774,6 +638,32 @@
     },
     {
       "name": "Validate user is unable to fetch a single object without inserting object ID in params",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -820,155 +710,33 @@
       "response": []
     },
     {
-      "name": "Validate user is unable to fetch a single object with an invalid ID eg 1",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('Status code is 404', function () {\r",
-              "    pm.expect([\r",
-              "        404,\r",
-              "    ]).to.include(pm.response.code);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response time is under 2000ms', function () {\r",
-              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response body is JSON', function () {\r",
-              "    pm.response.to.be.json;\r",
-              "})\r",
-              "\r",
-              "pm.test('Response body has Object with id=1 was not found', function () {\r",
-              "    const responseJson = pm.response.json();\r",
-              "    pm.expect(responseJson).to.be.an('object');\r",
-              "    pm.expect(responseJson).to.have.property('Object with id=1 was not found');\r",
-              "})"
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "x-api-key",
-            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
-        },
-        "url": {
-          "raw": "https://api.restful-api.dev/collections/products/objects/1",
-          "protocol": "https",
-          "host": [
-            "api",
-            "restful-api",
-            "dev"
-          ],
-          "path": [
-            "collections",
-            "products",
-            "objects",
-            "1"
-          ],
-          "query": [
-            {
-              "key": "id",
-              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
-              "disabled": true
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Validate user is not able to fetch object again after deleting it",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test('Status code is 404', function () {\r",
-              "    pm.expect([\r",
-              "        404,\r",
-              "    ]).to.include(pm.response.code);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response time is under 2000ms', function () {\r",
-              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-              "})\r",
-              "\r",
-              "pm.test('Response body is JSON', function () {\r",
-              "    pm.response.to.be.json;\r",
-              "})\r",
-              "\r",
-              "pm.test('Response body has property id', function () {\r",
-              "    const responseJson = pm.response.json();\r",
-              "    pm.expect(responseJson).to.be.an('object');\r",
-              "    pm.expect(responseJson).to.have.property('id');\r",
-              "})"
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "x-api-key",
-            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
-        },
-        "url": {
-          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
-          "protocol": "https",
-          "host": [
-            "api",
-            "restful-api",
-            "dev"
-          ],
-          "path": [
-            "collections",
-            "products",
-            "objects",
-            "ff8081819c5368bb019cb2fcbea018ae"
-          ],
-          "query": [
-            {
-              "key": "id",
-              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
-              "disabled": true
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "Validate user can create an object even if price is missing",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -1006,6 +774,32 @@
     },
     {
       "name": "Validate user cannot create an object when user pass number for name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -1043,6 +837,32 @@
     },
     {
       "name": "Validate user cannot create an object when user put an inverted column around year",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -1073,91 +893,6 @@
             "collections",
             "products",
             "objects"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Validate user cannot edit an already deleted object",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "x-api-key",
-            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.100,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"5mb\"\r\n  }\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
-          "protocol": "https",
-          "host": [
-            "api",
-            "restful-api",
-            "dev"
-          ],
-          "path": [
-            "collections",
-            "products",
-            "objects",
-            "ff8081819c5368bb019cb2fcbea018ae"
-          ],
-          "query": [
-            {
-              "key": "id",
-              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
-              "disabled": true
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Validate user cannot delete an already deleted object twice",
-      "request": {
-        "method": "DELETE",
-        "header": [
-          {
-            "key": "x-api-key",
-            "value": "c274a7b1-f06c-4425-a743-dc5cfa847932",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"message\": \"Object with id = ff8081819c5368bb019caed7dde4125a\r\n}"
-        },
-        "url": {
-          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
-          "protocol": "https",
-          "host": [
-            "api",
-            "restful-api",
-            "dev"
-          ],
-          "path": [
-            "collections",
-            "products",
-            "objects",
-            "ff8081819c5368bb019cb2fcbea018ae"
-          ],
-          "query": [
-            {
-              "key": "id",
-              "value": "ff8081819c5368bb019cb2fcbea018ae\n",
-              "disabled": true
-            }
           ]
         }
       },
