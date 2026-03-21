@@ -9,6 +9,32 @@
   "item": [
     {
       "name": "Validate that user is able to get all object",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "protocolProfileBehavior": {
         "disableBodyPruning": true,
         "disabledSystemHeaders": {}
@@ -32,11 +58,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ],
@@ -58,6 +88,31 @@
     },
     {
       "name": "Validate user can get a single object by the ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 404', function () {\r",
+              "    pm.expect([\r",
+              "        404\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [
@@ -68,11 +123,15 @@
           }
         ],
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cb2fcbea018ae"
@@ -99,7 +158,6 @@
         {
           "listen": "test",
           "script": {
-            "type": "text/javascript",
             "exec": [
               "pm.test('Status code is 200 or 201', function () {",
               "    pm.expect([",
@@ -143,7 +201,10 @@
               "    pm.expect(responseJson).to.have.property('name');",
               "    pm.expect(responseJson.name).to.eql(expectedName);",
               "})"
-            ]
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
           }
         }
       ],
@@ -166,11 +227,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ],
@@ -265,11 +330,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cbdae98952c51",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cbdae98952c51",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cbdae98952c51"
@@ -362,11 +431,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cbdae98952c51",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cbdae98952c51",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cbdae98952c51"
@@ -450,11 +523,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ]
@@ -503,11 +580,15 @@
           "raw": "{\r\n  \"message\": \"Object with id = ff8081819c5368bb019caed7dde4125a\r\n}"
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cb2fcbea018ae"
@@ -572,11 +653,15 @@
           "raw": ""
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ],
@@ -663,11 +748,15 @@
           "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cbdc764532c7a",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cbdc764532c7a",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cbdc764532c7a"
@@ -707,11 +796,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ],
@@ -776,11 +869,15 @@
           "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/1",
+          "raw": "https://api.restful-api.dev/collections/products/objects/1",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "1"
@@ -846,11 +943,15 @@
           "raw": "{\r\n  \"name\": \"del MacBook Pro 16\",\r\n  \"data\": {\r\n    \"year\": \"e30\",\r\n    \"price\": 10009.99,\r\n    \"CPU model\": \"Intel Core i5\",\r\n    \"Hard disk size\": \"1 gb\"\r\n  }\r\n}"
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cb2fcbea018ae"
@@ -887,11 +988,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ]
@@ -920,11 +1025,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ]
@@ -953,11 +1062,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects",
+          "raw": "https://api.restful-api.dev/collections/products/objects",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects"
           ]
@@ -986,11 +1099,15 @@
           }
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cb2fcbea018ae"
@@ -1022,11 +1139,15 @@
           "raw": "{\r\n  \"message\": \"Object with id = ff8081819c5368bb019caed7dde4125a\r\n}"
         },
         "url": {
-          "raw": "{{BaseUrl}}collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "raw": "https://api.restful-api.dev/collections/products/objects/ff8081819c5368bb019cb2fcbea018ae",
+          "protocol": "https",
           "host": [
-            "{{BaseUrl}}collections"
+            "api",
+            "restful-api",
+            "dev"
           ],
           "path": [
+            "collections",
             "products",
             "objects",
             "ff8081819c5368bb019cb2fcbea018ae"
