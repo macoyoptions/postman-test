@@ -1,0 +1,357 @@
+{
+  "info": {
+    "_postman_id": "c2d71fc6-b14c-4280-95d1-48ab215284ef",
+    "name": "JsonPlaceHolder",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49030028",
+    "_collection_link": "https://go.postman.co/collection/49030028-c2d71fc6-b14c-4280-95d1-48ab215284ef?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "get all resources",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}/posts",
+          "host": [
+            "{{BaseUrl}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "post",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BaseUrl}}/posts?userId=14",
+              "host": [
+                "{{BaseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "14"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 06 Feb 2026 14:16:52 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "max-age=43200"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+            },
+            {
+              "key": "expires",
+              "value": "-1"
+            },
+            {
+              "key": "nel",
+              "value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+            },
+            {
+              "key": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "report-to",
+              "value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=hlCQ3WnsGqmxkQcT15SYuQo2yXhLzEV7CuHMs%2FbJFf0%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1770372833\"}],\"max_age\":3600}"
+            },
+            {
+              "key": "reporting-endpoints",
+              "value": "heroku-nel=\"https://nel.heroku.com/reports?s=hlCQ3WnsGqmxkQcT15SYuQo2yXhLzEV7CuHMs%2FbJFf0%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1770372833\""
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "vary",
+              "value": "Origin, Accept-Encoding"
+            },
+            {
+              "key": "via",
+              "value": "2.0 heroku-router"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "x-ratelimit-limit",
+              "value": "1000"
+            },
+            {
+              "key": "x-ratelimit-remaining",
+              "value": "999"
+            },
+            {
+              "key": "x-ratelimit-reset",
+              "value": "1770372880"
+            },
+            {
+              "key": "Age",
+              "value": "14579"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "HIT"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9c9b44922f0f20d2-IAD"
+            },
+            {
+              "key": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            }
+          ],
+          "cookie": [],
+          "body": "[]"
+        }
+      ]
+    },
+    {
+      "name": "posts1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BaseUrl}}/posts/?userid=1",
+          "host": [
+            "{{BaseUrl}}"
+          ],
+          "path": [
+            "posts",
+            ""
+          ],
+          "query": [
+            {
+              "key": "userid",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update resource",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"1\",\r\n  \"body\": \"bar\",\r\n  \"userId\": \"2\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}/posts/1",
+          "host": [
+            "{{BaseUrl}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete resource",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"\",\r\n  \"body\": \"bar\",\r\n  \"userId\": \"1\"\r\n}"
+        },
+        "url": {
+          "raw": "{{BaseUrl}}/posts/2",
+          "host": [
+            "{{BaseUrl}}"
+          ],
+          "path": [
+            "posts",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "post resources",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"\",\r\n  \"body\": \"How to play smart\",\r\n  \"userId\": \"13\"\r\n}"
+        },
+        "url": {
+          "raw": "{{BaseUrl}}/posts/",
+          "host": [
+            "{{BaseUrl}}"
+          ],
+          "path": [
+            "posts",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /posts/1/comments",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BaseUrl}}/posts/1/comments",
+          "host": [
+            "{{BaseUrl}}"
+          ],
+          "path": [
+            "posts",
+            "1",
+            "comments"
+          ],
+          "query": [
+            {
+              "key": "userid",
+              "value": "1",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /posts/999",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BaseUrl}}/posts/?userid=1",
+          "host": [
+            "{{BaseUrl}}"
+          ],
+          "path": [
+            "posts",
+            ""
+          ],
+          "query": [
+            {
+              "key": "userid",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BaseUrl",
+      "value": ""
+    }
+  ]
+}
