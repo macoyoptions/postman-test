@@ -44,6 +44,9 @@ jobs:
         with:
           name: newman-report
           path: ./reports/report.html
+          
+          name: JsonPlaceHolder-report
+          path: ./reports/report.html
 
 
 
