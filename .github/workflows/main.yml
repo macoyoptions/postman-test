@@ -44,8 +44,13 @@ jobs:
         with:
           name: newman-report
           path: ./reports/report.html
+
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v5
+        with:
           name: JsonPlaceHolder-report
           path: ./reports/report.html
+          
 
 
 
