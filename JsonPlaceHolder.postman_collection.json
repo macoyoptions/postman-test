@@ -9,6 +9,32 @@
   "item": [
     {
       "name": "get all resources",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -168,6 +194,32 @@
     },
     {
       "name": "posts1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [],
@@ -192,6 +244,32 @@
     },
     {
       "name": "update resource",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "PUT",
         "header": [],
@@ -219,6 +297,32 @@
     },
     {
       "name": "delete resource",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "DELETE",
         "header": [],
@@ -241,6 +345,32 @@
     },
     {
       "name": "post resources",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [],
@@ -263,6 +393,32 @@
     },
     {
       "name": "GET /posts/1/comments",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -301,6 +457,32 @@
     },
     {
       "name": "GET /posts/999",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200 or 201', function () {\r",
+              "    pm.expect([\r",
+              "        200,\r",
+              "        201\r",
+              "    ]).to.include(pm.response.code);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2000ms', function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+              "})\r",
+              "\r",
+              "pm.test('Response body is JSON', function () {\r",
+              "    pm.response.to.be.json;\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [],
