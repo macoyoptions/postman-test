@@ -33,10 +33,17 @@ jobs:
         run: mkdir -p ./reports
 
       - name: Run postman-test
-        run: npx newman run Assignment.postman_collection.json --env-var Base_Url=${{ secrets.Base_Url}} --env-var x-api-key=c274a7b1-f06c-4425-a743-dc5cfa847932 --reporters htmlextra --reporter-htmlextra-export ./reports/report.html
+        run: |
+        npx newman run Assignment.postman_collection.json \
+        --env-var Base_Url=${{ secrets.Base_Url}} \
+        --env-var x-api-key=c274a7b1-f06c-4425-a743-dc5cfa847932 \
+        --reporters htmlextra --reporter-htmlextra-export ./reports/report.html \
 
       - name: Run JsonPlaceHolder-test
-        run: npx newman run JsonPlaceHolder.postman_collection.json --env-var Base_Url_Two=${{ secrets.Base_Url_Two}} --reporters htmlextra --reporter-htmlextra-export ./reports/report.html
+        run: |
+        npx newman run JsonPlaceHolder.postman_collection.json \
+        --env-var Base_Url_Two=${{ secrets.Base_Url_Two}} \
+        --reporters htmlextra --reporter-htmlextra-export ./reports/report.html \
 
 
       - name: Upload HTML Report
